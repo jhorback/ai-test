@@ -1,0 +1,9 @@
+{
+    "verbose": false,
+    "moduleResolution": "none",
+    "plugins": {
+      "local": {
+        "browsers": ["chrome"]
+      }
+    }
+  }
