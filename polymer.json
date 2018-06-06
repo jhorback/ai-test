@@ -6,9 +6,7 @@
   ],
   "extraDependencies": [
     "manifest.json",
-    "node_modules/@webcomponents/webcomponentsjs/*.js",
-    "!node_modules/@webcomponents/webcomponentsjs/gulpfile.js",
-    "node_modules/@webcomponents/webcomponentsjs/bundles/*.js"
+    "node_modules/@webcomponents/webcomponentsjs/**"
   ],
   "builds": [
     {
@@ -46,7 +44,7 @@
       "addServiceWorker": true
     }
   ],
-  "moduleResolution": "node",
+  "moduleResolution": "none",
   "npm": true,
   "lint": {
     "rules": [

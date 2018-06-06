@@ -1,14 +1,11 @@
 {
-  "name": "polymer-starter-kit",
-  "version": "4.0.0",
-  "description": "A starting point for Polymer apps",
-  "author": "The Polymer Authors",
-  "license": "BSD-3-Clause",
+  "name": "p3t-test-app",
+  "description": "An app to test new build and scripts.",
   "repository": "Polymer/polymer-starter-kit",
   "scripts": {
     "start": "yarn run serve | yarn run watch",
-    "serve": "polymer serve --port 8080",
-    "watch": "browser-sync start --proxy localhost:8080 --open --files \"**/*.*\"",
+    "serve": "polymer serve --port 3000",
+    "watch": "browser-sync start --proxy localhost:3000 --port 3001 --open --files \"src/**/*.*\"",
     "build": "polymer build",
     "lint": "polymer lint",
     "test": "polymer test",
@@ -29,7 +26,8 @@
   "devDependencies": {
     "browser-sync": "^2.24.4",
     "polymer-cli": "^1.7.1",
-    "wct-browser-legacy": "^1.0.0"
+    "wct-browser-legacy": "^1.0.0",
+    "lodash": "^3.10.1"
   },
   "engines": {
     "node": ">=8.0"

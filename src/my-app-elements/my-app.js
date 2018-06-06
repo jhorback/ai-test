@@ -8,19 +8,19 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
-import '@polymer/app-layout/app-header/app-header.js';
-import '@polymer/app-layout/app-header-layout/app-header-layout.js';
-import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
-import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import '@polymer/app-route/app-location.js';
-import '@polymer/app-route/app-route.js';
-import '@polymer/iron-pages/iron-pages.js';
-import '@polymer/iron-selector/iron-selector.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
+import { PolymerElement, html } from '../../node_modules/polymer/polymer-element.js';
+import { setPassiveTouchGestures, setRootPath } from '../../node_modules/@polymer/polymer/lib/utils/settings.js';
+import '../../node_modules/@polymer/app-layout/app-drawer/app-drawer.js';
+import '../../node_modules/@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
+import '../../node_modules/@polymer/app-layout/app-header/app-header.js';
+import '../../node_modules/@polymer/app-layout/app-header-layout/app-header-layout.js';
+import '../../node_modules/@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
+import '../../node_modules/@polymer/app-layout/app-toolbar/app-toolbar.js';
+import '../../node_modules/@polymer/app-route/app-location.js';
+import '../../node_modules/@polymer/app-route/app-route.js';
+import '../../node_modules/@polymer/iron-pages/iron-pages.js';
+import '../../node_modules/@polymer/iron-selector/iron-selector.js';
+import '../../node_modules/@polymer/paper-icon-button/paper-icon-button.js';
 import './my-icons.js';
 
 // Gesture events like tap and track generated from touch will not be
@@ -82,7 +82,7 @@ class MyApp extends PolymerElement {
       <app-drawer-layout fullbleed="" narrow="{{narrow}}">
         <!-- Drawer content -->
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-          <app-toolbar>Menusss</app-toolbar>
+          <app-toolbar><div on-click="testAsync">Menux</div></app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
             <a name="view1" href="[[rootPath]]view1">View One</a>
             <a name="view2" href="[[rootPath]]view2">View Two</a>
@@ -127,6 +127,12 @@ class MyApp extends PolymerElement {
     return [
       '_routePageChanged(routeData.page)'
     ];
+  }
+
+  async testAsync() {
+    alert("start");
+    await this._routePageChanged();
+    alert("done");
   }
 
   _routePageChanged(page) {
