@@ -30,12 +30,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </test-fixture>
 
     <script type="module">
+      async function asyncTestFn() {
+        return "hello";
+      }
+
       suite('my-view1 tests', function() {
         test('Number in circle should be 1', function() {
           var myView = fixture('BasicView');
           var circle = myView.shadowRoot.querySelector('.circle');
 
           assert.equal(circle.textContent, '1');
+        });
+
+        
+
+        test("async es6 tests work in ie11", async () => {
+          const response = await asyncTestFn();
+          assert.equal(response, "hello");
         });
       });
     </script>
