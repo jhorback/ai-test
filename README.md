@@ -5,9 +5,9 @@
 ##### Prerequisites
 
 Install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
-[npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
+[npm](https://www.npmjs.com).
 
-    npm install -g polymer-cli@next
+    npm install -g polymer-cli@latest
 
 Then run yarn to install the node modules
 
@@ -17,7 +17,6 @@ Then run yarn to install the node modules
 
 This command serves the app at `http://localhost:3000` and sets up watch tasks for development.
 Use the Browser Sync url for hot reload `http://localhost:30001`.
-routing for the app:
 
     yarn start
 
@@ -39,7 +38,7 @@ build/
 
 ### Preview the build
 
-This command serves your app.
+This command serves specific builds.
 
     yarn serve build/ie11/
     yarn serve build/modern/
