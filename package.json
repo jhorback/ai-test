@@ -10,7 +10,7 @@
     "build": "polymer build",
     "lint": "polymer lint",
     "test": "polymer test",
-    "sass": "node scripts/sass.js #testing sass"
+    "css": "node --experimental-modules scripts/css.mjs #testing css transformations"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
@@ -22,13 +22,16 @@
     "@polymer/iron-selector": "^3.0.0-pre.15",
     "@polymer/paper-icon-button": "^3.0.0-pre.15",
     "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "node-sass": "^4.9.0"
+    "@webcomponents/webcomponentsjs": "^2.0.0"
   },
   "devDependencies": {
+    "@csstools/postcss-sass": "^2.0.0",
     "browser-sync": "^2.24.4",
     "lodash": "^3.10.1",
+    "node-glob": "^1.2.0",
     "polymer-cli": "^1.7.1",
+    "postcss-cli": "^5.0.0",
+    "postcss-preset-env": "^5.1.0",
     "wct-browser-legacy": "^1.0.0"
   },
   "engines": {
