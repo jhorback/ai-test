@@ -29,6 +29,7 @@
     "browser-sync": "^2.24.4",
     "lodash": "^3.10.1",
     "node-glob": "^1.2.0",
+    "node-sass": "^4.9.0",
     "polymer-cli": "^1.7.1",
     "postcss-cli": "^5.0.0",
     "postcss-preset-env": "^5.1.0",
