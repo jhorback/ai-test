@@ -54,15 +54,6 @@ class CSS {
         }
     }
 
-    renderSassFromData(data) {
-        console.log("sass renderSync");
-        const result = sass.renderSync({
-            data
-        });
-        const css = result.css.toString('utf8');
-        return css;
-    }
-
     renderSassFromFile(file) {
         return new Promise((resolve, reject) => {
             sass.render({
