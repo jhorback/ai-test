@@ -1,17 +1,17 @@
 import postcss from 'postcss';
-import postcssSass from '@csstools/postcss-sass';
+//import postcssSass from '@csstools/postcss-sass';
 import postcssPresetEnv from 'postcss-preset-env';
 import sass from 'node-sass';
 import glob from 'glob';
 import fs from 'fs';
-
+import path from 'path';
 
 
 class CSS {
     constructor() {
         //const plugins = [postcssSass, postcssPresetEnv];
         const env = postcssPresetEnv({
-            stage: 4,
+            stage: 3,
             browsers: "ie 11"
         });
 
@@ -40,15 +40,22 @@ class CSS {
         paths.forEach(p => this.processSassFile(p));
     }
 
-    async processSassFile(path) {
-        console.log("css: processing file", path);
+    async processSassFile(filePath) {
+        console.log("css: processing file", filePath);
         try {
-            const css = await this.renderSassFromFile(path);
-            // jch - need to pass browser list options
+            const css = await this.renderSassFromFile(filePath);
             const result = await this.postCssProcessor.process(css, {
                 from: null
             });
-            console.log("POSTCSS RESULT", result.css);        
+            const cssJs = this.getJsTemplate(result.css);
+            const dir = path.dirname(filePath);
+            const name = path.basename(filePath, ".scss");
+
+            fs.writeFile(`${dir}/${name}.css.js`, cssJs, function (err) {
+                if (err) throw err;
+                console.log('Saved!');
+            });
+            console.log("POSTCSS RESULT", );        
         } catch (err) {
             console.log("css: ERROR", err);
         }
@@ -71,6 +78,20 @@ class CSS {
             });
         }); 
     }
+
+    getJsTemplate(style) {
+        return `
+/**
+ * Generated css.
+ */
+import {html} from '/node_modules/@polymer/polymer/polymer-element.js';
+
+export const style = html\`
+<style>
+${style}
+</style>\`;
+        `;
+    }
 }
 
 
@@ -84,8 +105,6 @@ css.process();
     Need to pass browserlist options to post css
     need to generate the .css.js file with the correct path
 */
-
-
 
 
 const comments = `

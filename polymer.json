@@ -44,7 +44,7 @@
       "addServiceWorker": true
     }
   ],
-  "moduleResolution": "none",
+  "moduleResolution": "node",
   "npm": true,
   "lint": {
     "rules": [
