@@ -8,10 +8,10 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '../../node_modules/@polymer/polymer/polymer-element.js';
-import './shared-styles.js';
+import { PolymerElement, html } from '../../../node_modules/@polymer/polymer/polymer-element.js';
+import '../shared-styles.js';
 
-class MyView1 extends PolymerElement {
+class MyView2 extends PolymerElement {
   static get template() {
     return html`
       <style include="shared-styles">
@@ -23,13 +23,13 @@ class MyView1 extends PolymerElement {
       </style>
 
       <div class="card">
-        <div class="circle">1</div>
-        <h1>View One</h1>
-        <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-        <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+        <div class="circle">2</div>
+        <h1>View Two</h1>
+        <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
+        <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
       </div>
     `;
   }
 }
 
-window.customElements.define('my-view1', MyView1);
+window.customElements.define('my-view2', MyView2);

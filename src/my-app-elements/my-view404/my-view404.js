@@ -8,28 +8,22 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '../../node_modules/@polymer/polymer/polymer-element.js';
-import './shared-styles.js';
+import { PolymerElement, html } from '../../../node_modules/@polymer/polymer/polymer-element.js';
 
-class MyView2 extends PolymerElement {
+class MyView404 extends PolymerElement {
   static get template() {
     return html`
-      <style include="shared-styles">
+      <style>
         :host {
           display: block;
 
-          padding: 10px;
+          padding: 10px 20px;
         }
       </style>
 
-      <div class="card">
-        <div class="circle">2</div>
-        <h1>View Two</h1>
-        <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-        <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-      </div>
+      Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
     `;
   }
 }
 
-window.customElements.define('my-view2', MyView2);
+window.customElements.define('my-view404', MyView404);

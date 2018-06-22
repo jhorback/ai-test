@@ -51,7 +51,7 @@ class CSS {
             const dir = path.dirname(filePath);
             const name = path.basename(filePath, ".scss");
 
-            fs.writeFile(`${dir}/${name}.css.js`, cssJs, function (err) {
+            fs.writeFile(`${dir}/${name}-css.js`, cssJs, function (err) {
                 if (err) throw err;
                 console.log('Saved!');
             });
