@@ -5,6 +5,7 @@ import sass from 'node-sass';
 import glob from 'glob';
 import fs from 'fs';
 import path from 'path';
+import watch from 'node-watch';
 
 
 class CSS {
@@ -24,6 +25,27 @@ class CSS {
             const paths = await this.getSassFilePaths();
             this.processSassFiles(paths);
         } catch (error) {
+            console.log("ERROR", error);
+        }
+    }
+
+    watch() {
+        try {
+            console.log("STARTING sasquatch...");
+            watch("./src/", {
+                filter: /\.scss$/,
+                recursive: true
+            }, (event, filename) => {
+                // process all scss files if a partial (begins with an underscore).
+                // otherwise just regenerate the single scss file.
+                const name = path.basename(filename);
+                if (name.indexOf("_") === 0) {
+                    this.process();
+                } else {
+                    (event !== "remove") && this.processSassFile(filename);
+                }
+            });
+        } catch(error) {
             console.log("ERROR", error);
         }
     }
@@ -55,9 +77,7 @@ class CSS {
 
             fs.writeFile(`${dir}/${name}-css.js`, cssJs, function (err) {
                 if (err) throw err;
-                console.log('Saved!');
             });
-            console.log("POSTCSS RESULT", );        
         } catch (err) {
             console.log("css: ERROR", err);
         }
@@ -98,9 +118,10 @@ ${style}
 
 
 
-
+const [,,...args] = process.argv;
 const css = new CSS();
-css.process();
+args.includes("--watch") ? css.watch() : css.process();
+
 /*
     why does node-sass not work with a file path?
         if using data need to tell it a hint for imports?!

@@ -7,8 +7,7 @@ import {html} from '/node_modules/@polymer/polymer/polymer-element.js';
 export const style = html`
 <style>
 :host {
-  --app-primary-color: #4285f4;
-  --app-primary-color: $test-import-color;
+  app-primary-color: purple;
   --app-secondary-color: black;
   display: block; }
 
@@ -19,7 +18,7 @@ app-header {
   color: #fff;
   background-color: var(--app-primary-color);
   background-color: var(--app-primary-color);
-  background-color: red; }
+  background-color: purple; }
 
 app-header paper-icon-button {
   --paper-icon-button-ink-color: white; }
