@@ -1,3 +1,5 @@
+@import "../_test-import";
+
 :host {
     --app-primary-color: #4285f4;
     --app-secondary-color: black;
@@ -12,6 +14,7 @@ app-drawer-layout:not([narrow]) [drawer-toggle] {
 app-header {
     color: #fff;
     background-color: var(--app-primary-color);
+    background-color: $test-import-color;
 }
 
 app-header paper-icon-button {

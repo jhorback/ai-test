@@ -30,7 +30,9 @@ class CSS {
 
     getSassFilePaths() {
         return new Promise((resolve, reject) => {
-            glob("src/**/*.scss", (err, files) => {
+            glob("src/**/*.scss", {
+                ignore: "src/**/_*.scss",
+            }, (err, files) => {
                 err ? reject(err) : resolve(files);
             });
         });

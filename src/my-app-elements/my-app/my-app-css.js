@@ -8,6 +8,7 @@ export const style = html`
 <style>
 :host {
   --app-primary-color: #4285f4;
+  --app-primary-color: $test-import-color;
   --app-secondary-color: black;
   display: block; }
 
@@ -17,7 +18,8 @@ app-drawer-layout:not([narrow]) [drawer-toggle] {
 app-header {
   color: #fff;
   background-color: var(--app-primary-color);
-  background-color: var(--app-primary-color); }
+  background-color: var(--app-primary-color);
+  background-color: red; }
 
 app-header paper-icon-button {
   --paper-icon-button-ink-color: white; }
