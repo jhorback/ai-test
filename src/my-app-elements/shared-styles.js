@@ -8,10 +8,9 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import '../../node_modules/@polymer/polymer/polymer-element.js';
+import { html } from '../../node_modules/@polymer/polymer/lib/utils/html-tag.js';
 
-const $_documentContainer = document.createElement('template');
-$_documentContainer.innerHTML = `<dom-module id="shared-styles">
+const template = html`<dom-module id="shared-styles">
   <template>
     <style>
       .card {
@@ -44,4 +43,4 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
   </template>
 </dom-module>`;
 
-document.head.appendChild($_documentContainer.content);
+document.head.appendChild(template.content);

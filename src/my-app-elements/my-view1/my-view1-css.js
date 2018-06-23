@@ -9,6 +9,8 @@ export const style = html`
 :host {
   display: block;
   padding: 10px; }
+  :host .circle {
+    background: orange !important; }
 
 </style>`;
         
