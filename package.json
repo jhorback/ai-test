@@ -4,11 +4,9 @@
   "repository": "Polymer/polymer-starter-kit",
   "license": "0BSD",
   "scripts": {
-    "start": "yarn run serve | yarn run watch",
+    "start": "yarn serve | yarn watch",
     "serve": "polymer serve --port 3000",
-    "watch": "browser-sync start --proxy localhost:3000 --port 3001 --open --files \"src/**/*.*\"",
-    "build": "polymer build",
-    "lint": "polymer lint",
+    "watch": "concurrently --kill-others \"yarn css --watch\" \"browser-sync start --proxy localhost:3000 --port 3001 --open --files \\\"src/**/*.*\\\"\"",
     "test": "polymer test",
     "css": "node --experimental-modules scripts/css.mjs #testing css transformations"
   },
@@ -27,6 +25,7 @@
   "devDependencies": {
     "@csstools/postcss-sass": "^2.0.0",
     "browser-sync": "^2.24.4",
+    "concurrently": "^3.6.0",
     "lodash": "^3.10.1",
     "node-glob": "^1.2.0",
     "node-sass": "^4.9.0",
