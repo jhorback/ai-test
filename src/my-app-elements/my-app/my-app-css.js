@@ -18,7 +18,7 @@ app-header {
   color: white;
   background-color: var(--app-primary-color);
   background-color: var(--app-primary-color);
-  background-color: red; }
+  background-color: green; }
 
 app-header paper-icon-button {
   --paper-icon-button-ink-color: white; }

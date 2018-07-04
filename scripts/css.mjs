@@ -23,7 +23,7 @@ class CSS {
     async process() {
         try {
             const paths = await this.getSassFilePaths();
-            this.processSassFiles(paths);
+            await this.processSassFiles(paths);
         } catch (error) {
             console.log("ERROR", error);
         }
@@ -60,27 +60,31 @@ class CSS {
         });
     }
 
-    processSassFiles(paths) {
-        paths.forEach(p => this.processSassFile(p));
+    async processSassFiles(paths) {
+        const processes = paths.map(p => this.processSassFile(p));
+        await Promise.all(processes);
     }
 
     async processSassFile(filePath) {
         console.log("css: processing file", filePath);
-        try {
-            const css = await this.renderSassFromFile(filePath);
-            const result = await this.postCssProcessor.process(css, {
-                from: null
-            });
-            const cssJs = this.getJsTemplate(result.css);
-            const dir = path.dirname(filePath);
-            const name = path.basename(filePath, ".scss");
-
-            fs.writeFile(`${dir}/${name}-css.js`, cssJs, function (err) {
-                if (err) throw err;
-            });
-        } catch (err) {
-            console.log("css: ERROR", err);
-        }
+        return new Promise(async (resolve, reject) => {
+            try {
+                const css = await this.renderSassFromFile(filePath);
+                const result = await this.postCssProcessor.process(css, {
+                    from: null
+                });
+                const cssJs = this.getJsTemplate(result.css);
+                const dir = path.dirname(filePath);
+                const name = path.basename(filePath, ".scss");
+                const cssJsName = `${dir}/${name}-css.js`;
+                fs.writeFile(cssJsName, cssJs, function (err) {
+                    err ? reject(err) : resolve(cssJsName);
+                });
+            } catch (err) {
+                console.log("css: ERROR", err);
+                reject(err);
+            }
+        });        
     }
 
     renderSassFromFile(file) {
@@ -121,39 +125,3 @@ ${style}
 const [,,...args] = process.argv;
 const css = new CSS();
 args.includes("--watch") ? css.watch() : css.process();
-
-/*
-    why does node-sass not work with a file path?
-        if using data need to tell it a hint for imports?!
-    Need to pass browserlist options to post css
-    need to generate the .css.js file with the correct path
-*/
-
-
-const comments = `
-    take all .scss files and generate a .css.js file that can be imported
-    watch any change to a single .scss file and re-generate that file
-    should support multiple configurations
-        i.e.
-            yarn sass:modern
-            yarn sass:ie11
-            yarn sass (same as yarn sass:modern)
-    since ie11 will be a different output, need to make sure any other scripts behave as expected
-        yarn start ()
-    
-
-    NO!!!!! - only have one sass output and target ie11 with hacks/strategies/enhancements to enable modern browers.
-        could do an .ie.scss that gets bundled in the index if needed
-
-`;
-
-
-
-
-/*
-try using postcss first for sass, css next, and minification
-
-need to minify
-need to pull in all src/*.scss files
-for each file need to output the .css.js file
-*/
