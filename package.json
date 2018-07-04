@@ -8,6 +8,7 @@
     "serve": "polymer serve --port 3000",
     "watch": "concurrently --kill-others \"yarn css --watch\" \"browser-sync start --proxy localhost:3000 --port 3001 --open --files \\\"src/**/*.*\\\"\"",
     "test": "polymer test",
+    "build": "yarn css & polymer build",
     "css": "node --experimental-modules scripts/css.mjs #testing css transformations"
   },
   "dependencies": {

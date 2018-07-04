@@ -1,7 +1,7 @@
 @import "../_test-import";
 
 :host {
-    app-primary-color: $test-import-color;
+    --app-primary-color: $test-import-color;
     --app-secondary-color: black;
 
     display: block;
@@ -12,7 +12,7 @@ app-drawer-layout:not([narrow]) [drawer-toggle] {
 }
 
 app-header {
-    color: #fff;
+    color: white;
     background-color: var(--app-primary-color);
     background-color: $test-import-color;
 }
