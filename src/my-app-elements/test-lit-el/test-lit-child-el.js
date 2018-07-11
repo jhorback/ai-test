@@ -6,15 +6,15 @@ import {linkVal, linkChecked} from '../../lib/linkProp.js';
 class TestLitChildEl extends LitElement {
     static get properties() {
         return {
-            users: Array,
-            nameInput: String,
-            test: Object
+            users: Array,            
+            state: Object
         };
     }
 
     constructor() {
         super();
-        this.test = {
+        this.state = {
+            nameInput: "Enter a name",
             testCheckbox: true
         };
     }
@@ -30,18 +30,21 @@ class TestLitChildEl extends LitElement {
             }
             </style>
             <form on-submit=${this.buttonClicked.bind(this)}>
-                <input type="text" id="nameInput" on-change=${linkVal(this, "nameInput")}></input>
+                <input type="text" 
+                    on-change=${linkVal(this, "state.nameInput")}
+                    value=${this.state.nameInput}
+                />
                 <button on-click=${this.buttonClicked.bind(this)}>TEST</button>
             </form>
             <div>
                 <button on-click=${this.deleteUsers}>DELETE</button>
             </div>
             <div>
-                Test checkbox - checked? ${this.test.testCheckbox}
+                Test checkbox - checked? ${this.state.testCheckbox}
                 <input type="checkbox"
-                    on-change=${linkChecked(this, "test.testCheckbox")}
-                    checked=${this.test.testCheckbox}
-                    >
+                    on-change=${linkChecked(this, "state.testCheckbox")}
+                    checked=${this.state.testCheckbox}
+                />
             </div>
             <ul>
             ${repeat(users, (user, index) => html`
@@ -60,13 +63,12 @@ class TestLitChildEl extends LitElement {
     */
     buttonClicked(event) {
         event.preventDefault();
-        debugger;
-        //const name = this.shadowRoot.querySelector("#nameInput").value;
         this.dispatchEvent(new CustomEvent("update-users", {
             composed: true,
             bubbles: true,
             detail: {
-                name: this.nameInput
+                name: this.state.nameInput,
+                test: this.state.testCheckbox
             }
         }));
     }

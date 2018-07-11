@@ -81,7 +81,6 @@ class TestLitEl extends LitElement {
         return html`
             This is TestLitEl. Foo: ${foo}
             <test-data-el
-                users={out(this)}
                 on-users-changed=${linkProp(this, "users")}
                 xxx-on-users-changed=${this.usersChanged.bind(this)}
             ></test-data-el>
