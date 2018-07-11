@@ -30,24 +30,13 @@ class TestDataEl extends EventMap(HTMLElement) {
         super();
 
         this.state = defaultState;
+        this.dispatchEvent(new CustomEvent("users-changed"));   
 
-        //this.dispatchEvent(new CustomEvent("users-changed"));
-        this.notify("state-changed");
-
-        // this.parentNode.addEventListener("update-users", (e) => {
-        //     this.users.push({
-        //         username: e.detail.name,
-        //         fullName: e.detail.test ? "TEST CHECKED" : "TEST NOT CHECKED"
-        //     });
-        //     this.users = [...this.users];
-        //     this.dispatchEvent(new CustomEvent("users-changed"));
-        // });
-    
-
+        
         this.parentNode.addEventListener("delete-all-users", (e) => {
-            setPropertyPath(this, "state.users", []);
-            //this.state = Object.assign({}, this.state);
-            //this.state.users = [];
+            this.state = Object.assign({}, this.state, {
+                users: []
+            });
             this.dispatchEvent(new CustomEvent("state-changed"));
         });
     }
@@ -57,11 +46,14 @@ class TestDataEl extends EventMap(HTMLElement) {
         const fullName = event.detail.test ? "TEST CHECKED" : "TEST NOT CHECKED";
         const {users} = this.state;
 
-        users.push({username, fullName});        
-        setPropertyPath(this, "state.users", users);
-        setPropertyPath(this, "state.testCheckbox", event.detail.test);
+        users.push({username, fullName});
 
-        // this.state.users = [...this.state.users];
+        this.state = Object.assign({}, this.state, {
+            users,
+            testCheckbox: event.detail.test,
+            nameInput: username
+        });
+
         this.dispatchEvent(new CustomEvent("state-changed"));
     }
 }

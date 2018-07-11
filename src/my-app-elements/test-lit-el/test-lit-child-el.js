@@ -10,11 +10,6 @@ class TestLitChildEl extends LitElement {
         };
     }
 
-    constructor() {
-        super();
-        //this.state = {};
-    }
-
     _render({state}) {
         return html`
             <style>
