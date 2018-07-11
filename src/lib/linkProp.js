@@ -55,7 +55,7 @@ export const linkChecked = (element, path) => {
  * @param {string} path 
  * @param {*} value 
  */
-const setPropertyPath = (element, path, value) => {
+export const setPropertyPath = (element, path, value) => {
     const parts = path.split(".");
     
     parts.reduce((obj, part, index) => {

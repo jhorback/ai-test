@@ -5,21 +5,17 @@ import {linkVal, linkChecked} from '../../lib/linkProp.js';
 
 class TestLitChildEl extends LitElement {
     static get properties() {
-        return {
-            users: Array,            
+        return {          
             state: Object
         };
     }
 
     constructor() {
         super();
-        this.state = {
-            nameInput: "Enter a name",
-            testCheckbox: true
-        };
+        //this.state = {};
     }
 
-    _render({users}) {
+    _render({state}) {
         return html`
             <style>
             :host{
@@ -32,7 +28,7 @@ class TestLitChildEl extends LitElement {
             <form on-submit=${this.buttonClicked.bind(this)}>
                 <input type="text" 
                     on-change=${linkVal(this, "state.nameInput")}
-                    value=${this.state.nameInput}
+                    value=${state.nameInput}
                 />
                 <button on-click=${this.buttonClicked.bind(this)}>TEST</button>
             </form>
@@ -43,33 +39,25 @@ class TestLitChildEl extends LitElement {
                 Test checkbox - checked? ${this.state.testCheckbox}
                 <input type="checkbox"
                     on-change=${linkChecked(this, "state.testCheckbox")}
-                    checked=${this.state.testCheckbox}
+                    checked=${state.testCheckbox}
                 />
             </div>
             <ul>
-            ${repeat(users, (user, index) => html`
+            ${repeat(state.users, (user, index) => html`
                 <li>${user.username} - ${user.fullName} - ${index}</li>
             `)}
             </ul>            
-            ${!users.length ? "No users" : "HAVE USERS"}
+            ${!state.users.length ? "No users" : "HAVE USERS"}
         `;
     }
 
-    /*
-    create a mixin to add a $ for all elements with an id?
-    or like react create a helper to link state from input values:
-    https://reactjs.org/docs/two-way-binding-helpers.html
-    or use a form value scraper?
-    */
     buttonClicked(event) {
         event.preventDefault();
+        const {nameInput:name, testCheckbox: test} = this.state;
         this.dispatchEvent(new CustomEvent("update-users", {
             composed: true,
             bubbles: true,
-            detail: {
-                name: this.state.nameInput,
-                test: this.state.testCheckbox
-            }
+            detail: { name, test }
         }));
     }
 

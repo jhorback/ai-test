@@ -3,6 +3,7 @@ import './test-data-el.js';
 import './test-lit-child-el.js';
 import {directive} from 'lit-html/lit-html.js';
 import {linkProp} from '../../lib/linkProp.js';
+import {defaultState} from './test-data-el.js';
 
 /*
 Create a lit-binding repo?
@@ -64,35 +65,41 @@ class TestLitEl extends LitElement {
     static get properties() {
         return {
             foo: String,
-            users: Array
+            state: Object
         };
     }
 
     constructor() {
         super();
-        this.users = [];
+        this.state = defaultState;
     }
 
     /**
      * How to get users from the data element to set users here?
      * @param {object} properties 
      */
-    _render({foo, users}) {
+    _render({foo, state}) {
         return html`
             This is TestLitEl. Foo: ${foo}
-            <test-data-el
-                on-users-changed=${linkProp(this, "users")}
-                xxx-on-users-changed=${this.usersChanged.bind(this)}
+            <test-data-el                
+                on-state-changed=${linkProp(this, "state")}
+                xxx-on-state-changed=${this.stateChanged.bind(this)}
             ></test-data-el>
-            <test-lit-child-el users=${users}></test-lit-child-el>
+            <test-lit-child-el state=${state}></test-lit-child-el>
+            <button on-click=${this._debug.bind(this)}>DEBUG</button>
         `;
     }
 
-    usersChanged(event) {
-        const users = event.currentTarget.users;
+    stateChanged(event) {
+        const state = event.currentTarget.state;
         setTimeout(() => {
-            this.users = users;
+            this.state = state;
         });
+    }
+
+    _debug() {
+        const del = this.shadowRoot.querySelector("test-data-el");
+        debugger;
     }
 }
 
