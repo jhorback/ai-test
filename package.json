@@ -9,7 +9,9 @@
     "watch": "concurrently --kill-others \"yarn css --watch\" \"browser-sync start --proxy localhost:3000 --port 3001 --open --files \\\"src/**/*.*\\\"\"",
     "test": "polymer test",
     "build": "yarn css & polymer build",
-    "css": "node --experimental-modules scripts/css.mjs #testing css transformations"
+    "css": "node scripts/css.mjs #testing css transformations",
+    "webpack": "webpack",
+    "webpack:serve": "webpack-dev-server"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
@@ -22,12 +24,16 @@
     "@polymer/lit-element": "0.5.2",
     "@polymer/paper-icon-button": "^3.0.0-pre.15",
     "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "bower-away": "^1.1.2"
   },
   "devDependencies": {
     "@csstools/postcss-sass": "^2.0.0",
     "browser-sync": "^2.24.4",
+    "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.6.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "html-webpack-plugin": "^3.2.0",
     "lodash": "^3.10.1",
     "node-glob": "^1.2.0",
     "node-sass": "^4.9.0",
@@ -35,7 +41,10 @@
     "polymer-cli": "^1.7.1",
     "postcss-cli": "^5.0.0",
     "postcss-preset-env": "^5.1.0",
-    "wct-browser-legacy": "^1.0.0"
+    "wct-browser-legacy": "^1.0.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "engines": {
     "node": ">=8.0"

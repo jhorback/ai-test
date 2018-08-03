@@ -1,8 +1,7 @@
-
 /**
  * Generated css.
  */
-import {html} from '/node_modules/@polymer/polymer/polymer-element.js';
+import { html } from "../../../node_modules/@polymer/polymer/polymer-element.js";
 
 export const style = html`
 <style>
@@ -37,4 +36,3 @@ app-header paper-icon-button {
     font-weight: bold; }
 
 </style>`;
-        
