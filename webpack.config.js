@@ -15,6 +15,11 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     publicPath: "/"
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
+  },
   resolve: {
     modules: [path.resolve(__dirname, "node_modules")]
   },
