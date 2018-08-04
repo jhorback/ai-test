@@ -136,7 +136,7 @@ class MyApp extends PolymerElement {
         import("../my-view2/my-view2.js");
         break;
       case "view3":
-        import("../my-view3/my-view3.js");
+        import(/* webpackPrefetch: true, webpackChunkName: "VwThree" */ "../my-view3/my-view3.js");
         break;
       case "view404":
         import("../my-view404/my-view404.js");

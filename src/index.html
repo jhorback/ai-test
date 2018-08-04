@@ -93,6 +93,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var refScript = document.getElementsByTagName('script')['0'];
       refScript.parentNode.insertBefore(script, refScript);
 
+      var script = document.createElement('script');
+      script.src = '/vendors~app.bundle.js';
+      var refScript = document.getElementsByTagName('script')['0'];
+      refScript.parentNode.insertBefore(script, refScript);
+
+      var script = document.createElement('script');
+      script.src = '/vendors~app~sw.bundle.js';
+      var refScript = document.getElementsByTagName('script')['0'];
+      refScript.parentNode.insertBefore(script, refScript);
+
     }, false);
   })();
 </script>    
