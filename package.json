@@ -10,8 +10,8 @@
     "test": "polymer test",
     "build": "yarn css & polymer build",
     "css": "node scripts/css.mjs #testing css transformations",
-    "webpack": "webpack",
-    "webpack:serve": "webpack-dev-server"
+    "wp:build": "webpack --env.mode=development",
+    "wp:serve": "webpack-dev-server --env.mode=production --open"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
