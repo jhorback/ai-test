@@ -10,8 +10,8 @@
     "test": "polymer test",
     "build": "yarn css & polymer build",
     "css": "node scripts/css.mjs #testing css transformations",
-    "wp:build": "webpack --env.mode=development",
-    "wp:serve": "webpack-dev-server --env.mode=production --open"
+    "wp:build": "webpack --config webpack.prod.js",
+    "wp:serve": "webpack-dev-server --open --config webpack.dev.js"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
@@ -44,7 +44,8 @@
     "wct-browser-legacy": "^1.0.0",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
   },
   "engines": {
     "node": ">=8.0"
