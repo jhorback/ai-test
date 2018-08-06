@@ -30,15 +30,20 @@ class TestDataEl extends EventMap(HTMLElement) {
         super();
 
         this.state = defaultState;
-        this.dispatchEvent(new CustomEvent("users-changed"));   
+        this.dispatchEvent(new CustomEvent("state-changed"));   
 
         
-        this.parentNode.addEventListener("delete-all-users", (e) => {
-            this.state = Object.assign({}, this.state, {
-                users: []
-            });
-            this.dispatchEvent(new CustomEvent("state-changed"));
+        this.parentNode.addEventListener("delete-all-users", this._deleteAllUsers);
+    }
+
+    _deleteAllUsers(event) {
+        debugger;
+        this.state = Object.assign({}, this.state, {
+            users: []
         });
+
+        //setPropertyPath(this, "state.users.0.username", "FOO");
+        this.dispatchEvent(new CustomEvent("state-changed"));
     }
 
     _updateUsers(event) {
@@ -47,6 +52,8 @@ class TestDataEl extends EventMap(HTMLElement) {
         const {users} = this.state;
 
         users.push({username, fullName});
+
+        //this.state.users = users;
 
         this.state = Object.assign({}, this.state, {
             users,
