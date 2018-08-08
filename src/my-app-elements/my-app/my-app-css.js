@@ -1,7 +1,8 @@
+
 /**
  * Generated css.
  */
-import { html } from "../../../node_modules/@polymer/polymer/polymer-element.js";
+import {html} from '@polymer/polymer/polymer-element.js';
 
 export const style = html`
 <style>
@@ -17,7 +18,7 @@ app-header {
   color: white;
   background-color: var(--app-primary-color);
   background-color: var(--app-primary-color);
-  background-color: green; }
+  background-color: purple; }
 
 app-header paper-icon-button {
   --paper-icon-button-ink-color: white; }
@@ -36,3 +37,4 @@ app-header paper-icon-button {
     font-weight: bold; }
 
 </style>`;
+        

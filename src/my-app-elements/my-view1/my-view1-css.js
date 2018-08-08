@@ -1,7 +1,8 @@
+
 /**
  * Generated css.
  */
-import { html } from "../../../node_modules/@polymer/polymer/polymer-element.js";
+import {html} from '@polymer/polymer/polymer-element.js';
 
 export const style = html`
 <style>
@@ -12,3 +13,4 @@ export const style = html`
     background: orange !important; }
 
 </style>`;
+        

@@ -9,9 +9,10 @@
     "watch": "concurrently --kill-others \"yarn css --watch\" \"browser-sync start --proxy localhost:3000 --port 3001 --open --files \\\"src/**/*.*\\\"\"",
     "test": "polymer test",
     "build": "yarn css & polymer build",
-    "css": "node scripts/css.mjs #testing css transformations",
+    "css": "node --experimental-modules scripts/css.mjs #testing css transformations",
     "wp:build": "webpack --config webpack.prod.js",
-    "wp:serve": "webpack-dev-server --open --config webpack.dev.js"
+    "wp:serve": "webpack-dev-server --open --config webpack.dev.js",
+    "wp:watch": "concurrently --kill-others \"yarn css --watch\" \"yarn wp:serve\""
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
